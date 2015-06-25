@@ -1,0 +1,43 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "isshell@mac.com",
+    "longName": "limittmm_improved",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/bluetooth_small_off.png",
+                "name": "BT_OFF",
+                "type": "png-trans"
+            },
+            {
+                "file": "images/bluetooth_small_on.png",
+                "name": "BT_ON",
+                "type": "png-trans"
+            },
+            {
+                "file": "fonts/Solaria.ttf",
+                "name": "SOLARIA_12",
+                "type": "font"
+            },
+            {
+                "file": "fonts/Solaria.ttf",
+                "name": "SOLARIA_64",
+                "type": "font"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "lmt_imp",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "42f9c7a5-d6eb-48a9-ab5e-b6f514f17b5a",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
