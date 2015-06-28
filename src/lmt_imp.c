@@ -90,13 +90,6 @@ static void create_date_layer(){
   text_layer_set_text_alignment(s_date_layer, GTextAlignmentCenter);
 }
 
-static void create_bt_icon_layer(){
-  s_bt_on = gbitmap_create_with_resource(RESOURCE_ID_BT_ON_WHITE);
-  s_bitmap_layer = bitmap_layer_create(GRect(2, 2, 20, 20));
-  bitmap_layer_set_background_color(s_bitmap_layer, GColorClear); 
-  bitmap_layer_set_bitmap(s_bitmap_layer, s_bt_on);
-}
-
 static void white_line_update(GPoint first_point,GPoint second_point, GContext *ctx){
   graphics_context_set_stroke_color(ctx, GColorWhite);
   graphics_context_set_stroke_width(ctx, 2);
@@ -171,18 +164,22 @@ static void canvas_update_proc(Layer *this_layer, GContext *ctx) {
   }
 }
 
+static void create_bt_icon_layer(){
+  s_bt_on = gbitmap_create_with_resource(RESOURCE_ID_BT_ON_WHITE);
+  s_bitmap_layer = bitmap_layer_create(GRect(4, 4, 10, 20));
+  bitmap_layer_set_compositing_mode(s_bitmap_layer, GCompOpOr);
+  bitmap_layer_set_background_color(s_bitmap_layer, GColorClear);
+  bitmap_layer_set_bitmap(s_bitmap_layer, s_bt_on);
+}
+
 static void bt_handler(bool connected) {
   // Show current connection state
   if (connected) {
     s_bt_on = gbitmap_create_with_resource(RESOURCE_ID_BT_ON_WHITE);
-    s_bitmap_layer = bitmap_layer_create(GRect(2, 2, 20, 20));
-    bitmap_layer_set_background_color(s_bitmap_layer, GColorClear); 
     bitmap_layer_set_bitmap(s_bitmap_layer, s_bt_on);
   } else {
-    s_bt_on = gbitmap_create_with_resource(RESOURCE_ID_BT_OFF_WHITE);
-    s_bitmap_layer = bitmap_layer_create(GRect(2, 2, 20, 20));
-    bitmap_layer_set_background_color(s_bitmap_layer, GColorClear); 
-    bitmap_layer_set_bitmap(s_bitmap_layer, s_bt_on);
+    s_bt_off = gbitmap_create_with_resource(RESOURCE_ID_BT_OFF_WHITE);
+    bitmap_layer_set_bitmap(s_bitmap_layer, s_bt_off);
   }
 }
 
@@ -204,6 +201,7 @@ static void main_window_load(Window *window) {
   
   create_bt_icon_layer();
   layer_add_child(text_layer_get_layer(s_background_layer), bitmap_layer_get_layer(s_bitmap_layer));
+  
   // Show current connection state
   bt_handler(bluetooth_connection_service_peek());
   
@@ -223,7 +221,7 @@ static void main_window_unload(Window *window) {
   fonts_unload_custom_font(s_time_font);
   fonts_unload_custom_font(s_time_two_font);
   
-  // Destroy layersTextLayer
+  // Destroy layers
   text_layer_destroy(s_background_layer);
   text_layer_destroy(s_hour_one_layer);
   text_layer_destroy(s_hour_two_layer);

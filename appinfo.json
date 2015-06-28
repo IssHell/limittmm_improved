@@ -9,12 +9,18 @@
     "resources": {
         "media": [
             {
-                "file": "images/bluetooth_small_off.png",
+                "file": "images/LIMITTMM_IMPROVED_SCREENSHOT.png",
+                "menuIcon": true,
+                "name": "SCREENSHOT",
+                "type": "png"
+            },
+            {
+                "file": "images/bluetooth_off.png",
                 "name": "BT_OFF",
                 "type": "png-trans"
             },
             {
-                "file": "images/bluetooth_small_on.png",
+                "file": "images/bluetooth_on.png",
                 "name": "BT_ON",
                 "type": "png-trans"
             },
